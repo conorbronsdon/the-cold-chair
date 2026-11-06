@@ -1,0 +1,6 @@
+{"ruler":["Queen","Iron"],"chair":"iron","actions":[
+[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],
+[30,"b","mill"],[60,"b","bridge"],[95,"b","granary"],[160,"b","warden"],
+[200,"b","dam"],[290,"b","walls"],[360,"b","progress"],[520,"b","charter"],
+[640,"b","progress"],[760,"b","progress"],[880,"b","progress"],[1000,"b","progress"]
+]}

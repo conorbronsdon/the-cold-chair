@@ -1,0 +1,7 @@
+{"ruler":["Queen","Ader"],"actions":[
+[1,"s","tax",22],[1,"s","toll",14],
+[1,"b","roads"],
+[30,"b","harbor"],
+[70,"b","expedition"],[92,"b","expedition"],[114,"b","expedition"],
+[136,"b","expedition"],[158,"b","expedition"],[180,"b","expedition"]
+]}

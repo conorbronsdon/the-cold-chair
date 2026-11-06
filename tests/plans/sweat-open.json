@@ -1,0 +1,7 @@
+{"ruler":["Queen","Openhand"],
+ "comment":"a wide-open trading realm — markets, roads, a charter, and dense towns — crosses SWEAT_DOOR and draws the gray sweat under --auto=0. Exercises the arrival (wk~764) + the crest card + the course + burnout + the sweatDone once-per-reign cap. Expected: the sweat arrives ~wk764, runs its course, sweatDone is set, and the reign endures to year 50 (week 1040) with 0 anomalies.",
+ "actions":[
+   [3,"s","tax",24],[3,"s","toll",16],[3,"s","tithe",14],
+   [4,"b","mill"],[10,"b","market"],[40,"b","roads"],[90,"b","charter"],
+   [140,"b","market"],[200,"b","roads"],[260,"b","market"],[320,"b","feast"]
+ ]}

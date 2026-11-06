@@ -1,0 +1,8 @@
+{"ruler":["Queen","Councilwright"],
+ "actions":[
+   [3,"s","tax",20],
+   [6,"c","appoint-marshal",0],
+   [10,"c","appoint-treasurer",0],
+   [14,"c","appoint-spymaster",0],
+   [20,"y"]
+ ]}

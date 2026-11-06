@@ -1,0 +1,4 @@
+{"ruler":["Queen","Squeeze"],"actions":[
+[3,"s","tax",40],[3,"s","toll",30],[3,"s","tithe",16],
+[4,"b","mill"],[6,"c","appoint-marshal",0],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0]
+]}

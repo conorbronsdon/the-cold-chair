@@ -1,0 +1,8 @@
+{"ruler":["Queen","Ashryn"],
+ "comment":"THE WYRM-CONSORT walking plan (v0.36.0). Seed 3030830 (a valley realm whose ord-1 wyrm is an ember-wing). A stable, high-hoard reign (tax 24) with every income work built in the first year, so the treasury climbs YEAR OVER YEAR without a down-year and opulence caps at 8 before any wyrm strikes. The drawn 'dragon' letter is answered Feed (index 1) — which, on this five-portent board (Queen, unmarried, ember-wing, hoard above the line after tribute, legit>=55 && opulence>=3 after the ravage's bite), opens the SECRET door and queues 'wyrm-troth'; that letter is answered with the troth (index 2 — go up the tower alone). The reign endures as the Wyrmmother. Run with --auto=0 (every other letter takes the least-drama default); the two dragon answers key on card id and fire whenever those letters appear (the week 210 on the c-entries only keeps them from blocking the harness's build queue). On this seed the wyrm first strikes in week 777 at capped opulence. Assertions: over==='endured', S.flags.wyrmConsort set, reignVerdict()==='the Wyrmmother', 0 anomalies, determinism double-run bit-identical.",
+ "actions":[
+   [3,"s","tax",24],[3,"s","toll",16],[3,"s","tithe",8],
+   [4,"b","mill"],[8,"b","market"],[12,"b","roads"],[20,"b","guildhall"],[30,"b","mill"],[44,"b","market"],
+   [210,"c","dragon",1],
+   [210,"c","wyrm-troth",2]
+ ]}

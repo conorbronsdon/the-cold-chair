@@ -1,0 +1,8 @@
+{"ruler":["Queen","Maerwyn"],"actions":[
+[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],
+[30,"b","mill"],[60,"b","bridge"],[95,"b","granary"],[130,"b","mill"],
+[160,"b","warden"],[200,"b","dam"],[290,"b","walls"],[300,"b","arms"],[320,"b","arms"],
+[360,"b","progress"],[420,"b","feast"],[480,"b","progress"],[520,"b","charter"],[560,"b","granary"],
+[600,"b","arms"],[640,"b","progress"],[700,"b","feast"],[760,"b","progress"],[820,"b","beacon"],
+[880,"b","progress"],[940,"b","feast"],[1000,"b","progress"]
+]}

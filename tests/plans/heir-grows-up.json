@@ -1,0 +1,5 @@
+{"ruler":["Queen","Mother"],"actions":[
+[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],
+[30,"b","heirhall"],[32,"c","the-tutors",2],
+[95,"b","granary"],[160,"b","warden"],[290,"b","walls"]
+]}

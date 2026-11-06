@@ -1,0 +1,9 @@
+{"ruler":["King","Osric"],"mode":"noble","actions":[
+[0,"m","noble"],
+[2,"c","nb-first-suit",1],
+[300,"p","muster"],
+[302,"c","nb-muster-quietly",0],
+[310,"c","nb-grievance",0],
+[320,"c","nb-the-acclaim",0],
+[330,"c","nb-the-cold-chair-taken",0]
+]}

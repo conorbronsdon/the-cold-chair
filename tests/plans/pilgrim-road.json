@@ -1,0 +1,8 @@
+{"ruler":["Queen","Palmeret"],"actions":[
+  [3,"s","tax",22],[3,"s","toll",14],[3,"s","tithe",8],
+  [4,"b","mill"],[24,"b","charter"],[40,"b","market"],[90,"b","roads"],
+  [110,"b","shrine"],[140,"b","guildhall"],[200,"b","progress"],
+  [260,"b","pilgrimage"],[320,"b","relic"],[300,"b","university"],
+  [520,"b","pilgrimage"],[600,"b","chantry"],[780,"b","pilgrimage"],
+  [880,"b","relic"],[940,"b","chantry"],[1000,"b","pilgrimage"]
+]}

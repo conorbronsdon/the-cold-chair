@@ -1,0 +1,3 @@
+{"ruler":["Queen","BadKnife"],
+ "comment":"spends a treasurer hook that was never minted — the harness must flag an anomaly, not log it as fired",
+ "actions":[[38,"k","famine","treasurer"]]}

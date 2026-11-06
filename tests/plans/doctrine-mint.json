@@ -1,0 +1,10 @@
+{"ruler":["Queen","Coineret"],"actions":[
+[3,"s","tax",20],[3,"s","toll",14],[3,"s","tithe",10],
+[4,"b","mill"],[24,"b","charter"],[40,"b","market"],
+[90,"b","roads"],[140,"b","mill"],[190,"b","guildhall"],
+[240,"b","progress"],[300,"b","market"],[360,"b","university"],
+[365,"c","doctrine-endowment",1],
+[440,"b","bridge"],[492,"c","doctrine-justice",1],[520,"b","roads"],[600,"b","progress"],
+[660,"b","cathedral"],[780,"b","harbor"],[880,"b","market"],
+[940,"b","progress"],[1000,"b","mint"]
+]}

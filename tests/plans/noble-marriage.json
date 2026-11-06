@@ -1,0 +1,9 @@
+{"ruler":["Queen","Sefa"],"mode":"noble","actions":[
+[0,"m","noble"],
+[2,"c","nb-first-suit",3],
+[20,"c","nb-betrothal",2],
+[21,"c","nb-betrothal",0],
+[25,"c","nb-regent-named",2],
+[26,"c","nb-regent-named",2],
+[27,"c","nb-regent-named",2]
+]}

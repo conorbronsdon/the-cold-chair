@@ -1,0 +1,9 @@
+{"ruler":["Queen","Isolde"],"actions":[
+[3,"s","tax",21],[3,"s","toll",14],[3,"s","tithe",10],
+[4,"b","mill"],[20,"b","charter"],[40,"b","market"],[70,"b","roads"],
+[110,"b","shrine"],[140,"b","monastery"],[170,"b","bridge"],[210,"b","guildhall"],
+[240,"b","dam"],[300,"b","canal"],[360,"b","mill"],[380,"b","mill"],[410,"b","mill"],[440,"b","mill"],
+[460,"b","beacon"],[500,"b","beaconchain"],[540,"b","roads"],
+[580,"b","university"],[600,"b","mint"],[640,"b","strikecoin"],[660,"b","strikecoin"],[680,"b","strikecoin"],[700,"b","strikecoin"],
+[760,"b","walls"],[800,"b","roads"],[860,"b","bulwark"],[940,"b","progress"],[1000,"b","progress"]
+]}

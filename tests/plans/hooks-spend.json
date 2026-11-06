@@ -1,0 +1,11 @@
+{"ruler":["Queen","Knife"],
+ "actions":[
+   [3,"s","tax",22],
+   [6,"c","appoint-marshal",0],
+   [10,"c","appoint-treasurer",0],
+   [14,"c","appoint-spymaster",0],
+   [38,"c","famine",0],
+   [88,"c","treasurer-third-1",0],
+   [93,"c","treasurer-third-2",1],
+   [191,"k","famine","treasurer"]
+ ]}

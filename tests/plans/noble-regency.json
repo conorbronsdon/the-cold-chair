@@ -1,0 +1,19 @@
+{
+  "ruler": ["Queen", "Aldreda"],
+  "mode": "noble",
+  "actions": [
+    [0, "m", "noble"],
+    [2, "c", "nb-first-suit", 1],
+    [8, "p", "charter"],
+    [40, "p", "muster"],
+    [80, "c", "nb-council-seat", 0],
+    [120, "p", "title"],
+    [180, "c", "nb-the-minority", 0],
+    [200, "p", "council"],
+    [260, "c", "cradle-crown", 0],
+    [340, "c", "nb-regent-named", 0],
+    [360, "p", "charter"],
+    [380, "p", "title"],
+    [470, "c", "nb-crown-in-trust", 0]
+  ]
+}
