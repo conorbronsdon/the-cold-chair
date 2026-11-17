@@ -56,3 +56,4 @@ console.log('over:', G.S.over, '| week:', G.S.week);
 console.log('leafData shape errors:', errs.length? errs : 'NONE');
 console.log(JSON.stringify(leaf, null, 1));
 
+if(errs.length){ console.log('FAIL: leafData shape errors: '+errs.join('; ')); process.exit(1); }
