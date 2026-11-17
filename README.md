@@ -1,5 +1,7 @@
 # The Cold Chair
 
+> **Maintenance mode.** This project is stable and receives security fixes. New features aren't planned, but issues and pull requests are still welcome.
+
 **[Play it in your browser →](https://the-cold-chair-preview.conor-afe.workers.dev/)**
 
 **Current release: v0.78.1.**
