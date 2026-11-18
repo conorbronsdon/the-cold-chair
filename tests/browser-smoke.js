@@ -142,9 +142,9 @@ const path = require('path');
     meta: document.querySelector('meta[name="application-version"]').content,
     api: annals.version()
   }));
-  ok(buildVersion.footer === 'v0.78.1' && buildVersion.meta === '0.78.1',
+  ok(buildVersion.footer === 'v0.79.0' && buildVersion.meta === '0.79.0',
      'the running release is visible in the footer and machine-readable metadata');
-  ok(buildVersion.api.app === '0.78.1' && buildVersion.api.history === '0.65',
+  ok(buildVersion.api.app === '0.79.0' && buildVersion.api.history === '0.67',
      'the API distinguishes release version from replay-schema version');
   const arms = await page.evaluate(() => {
     const c = document.getElementById('arms'), data = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;

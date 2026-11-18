@@ -4,7 +4,7 @@
 
 **[Play it in your browser →](https://the-cold-chair-preview.conor-afe.workers.dev/)**
 
-**Current release: v0.78.1.**
+**Current release: v0.79.0.**
 
 A medieval chronicle-strategy game in one self-contained page, plus a small offline worker. You take the Cold Chair of a
 river realm and hold it for twenty years if you can — taxes, tolls, works of stone and

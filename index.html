@@ -5696,6 +5696,87 @@ const CARDS={
           chron('The Crown left the road to its ruin, saving the coin a road costs and paying instead the slower price a bad road charges: the trade that took the river instead, the pilgrims who chose another shrine, the reach of a Crown that ended, now, a little short of where its roads gave out.'); }}
     ]},
 
+  /* ===== v0.79.0 THE MIDDLE-BOOK WAVE, batch 2 — more of the settled middle ===== */
+  // Same lane as v0.57.0 (same window, same shared roll, same approved-rebaseline cost): five more
+  // letters of a realm being governed — a ferry monopoly, a pew, a school, an escheated mill, and a
+  // village that asks the Crown to edit its own record. Static t and option s; no RNG in any effect.
+  'the-ferry-right':{ re:260,
+    t:'The Ferryman’s Right', from:'A carter and a pilgrim on the near bank, a younger man with a boat and an ambition, and the ferryman himself, who has held this water for thirty years',
+    p(){ return 'The ferryman who has carried the realm across the '+W.river+' at the low ford for thirty years holds the only licensed crossing for a day’s ride in either direction, and in the settled years he has learned what a monopoly is worth and raised his toll to match. The carters grumble and pay; the pilgrims grumble and pay; and now a younger man has come to court with a second boat and a request to run it, which the old ferryman calls robbery and the younger man calls a fair crossing, and both of them, the chronicler notes, are entirely right.';},
+    o:[
+      {l:'License the second boat', s:'Break the monopoly with a rival. The toll falls to what two boatmen will undercut each other to; the old ferryman loses the fat of thirty years and does not thank the Crown that fed him and then stopped.',
+        f(){ const t=W.towns.filter(x=>x!==W.capital).sort((a,b)=>b.pros-a.pros)[0]; if(t){ t.pros=clamp(t.pros+3,4,95); }
+          fac('commons',5); S.legit=clamp(S.legit+1,0,100);
+          chron('The Crown licensed the second boat, and the toll at the low ford fell by the week as the two boatmen raced each other to the fair price neither had ever charged alone, and the carters blessed the Crown, and the old ferryman rowed his emptier crossings and understood, too late to profit by it, what his thirty quiet years had actually been worth.'); }},
+      {l:'Buy the ferry into the Crown’s hand and set a fair toll', s:'Take the crossing into the Crown’s keeping. Costs the treasury to buy out the old man; buys a fair toll set by the Chair, and a river-crossing that answers to the Crown.',
+        f(){ S.gold=Math.max(0,S.gold-Math.round(90+prosperity())); fac('commons',4); S.legit=clamp(S.legit+2,0,100);
+          chron('The Crown bought the ferry outright, pensioned the old man off his own water, and posted a fair toll under the Crown’s stamp, and the crossing became what a crossing ought to be — a thing the realm uses without thinking about — which is a state of affairs only ever purchased by somebody, this time the treasury.'); }},
+      {l:'Let the right stand, and take the Crown’s cut of the toll', s:'Confirm the monopoly and share its profit. Gold now and yearly; the crossing stays dear, and the Crown is now a partner in the thing the carters are complaining about.',
+        f(){ S.gold+=Math.round(60+prosperity()); fac('commons',-3);
+          marg('The Crown confirmed the old ferryman in his right and wrote itself into his toll, and the crossing stayed dear and the complaints kept coming, only now they arrived at a court that was collecting a share of their cause, and were read with a divided attention the carters could feel from the bank.'); }}
+    ]},
+  'the-front-pew':{ re:234,
+    t:'The Matter of the Pew', from:'Two of a town’s leading houses, arrived in their best, to quarrel in the Crown’s hall over where they kneel in God’s',
+    p(){ return 'Two of the great houses of a market town have fallen out over the foremost pew of the parish church — the one beneath the rood, in sight of the whole congregation, that says without saying it whose house stands first in the town. Both have endowed the church; both have buried grandfathers under its floor; neither will yield the pew, and the parish priest, who cannot afford to offend either purse, has sent the quarrel up to the Crown with the relief of a man handing on a hot coal.';},
+    o:[
+      {l:'Rule by the parish rolls — the elder endowment keeps the pew', s:'Settle it by the record. The Crown’s justice is seen to rest on antiquity rather than favor; the house that loses learns the Crown’s record outranks its pride, and does not love the lesson.',
+        f(){ S.legit=clamp(S.legit+2,0,100); fac('commons',2); fac('court',-2);
+          chron('The Crown called for the parish rolls and gave the pew to the elder endowment, and the ruling was dry and dated and unanswerable, and the losing house learned that against the Crown’s record its purse and its pride weighed the same, which is to say nothing, and the town filed the lesson where towns keep such things.'); }},
+      {l:'Give the ruling to the Concord — let the church seat its own patrons', s:'Defer to the church. Piety and the Concord’s goodwill; and a Crown that has told two of its leading houses that in a matter of standing, the Chair is not the final seat.',
+        f(){ fac('church',4); S.piety=clamp(S.piety+2,0,100); S.legit=clamp(S.legit-1,0,100);
+          marg('The Crown handed the pew to the Concord to settle, holding that the church might seat its own, and the church did, gladly, and the two houses bowed to a ruling the Crown could have made and chose not to, and somewhere in the town’s long memory it was recorded that on a question of precedence the Chair had preceded no one.'); }},
+      {l:'Sell the front pew to whichever house pays the most', s:'Auction the honor. Gold now, and cleanly done; and a town that has watched the Crown put a price on precedence, and will remember the figure the next time it is asked to respect a rank.',
+        f(){ S.gold+=Math.round(70+prosperity()); fac('commons',-2); fac('court',-1);
+          marg('The Crown put the foremost pew to the purse and the fatter purse took it, and the coin was good and the matter was closed by the following Sunday, and the town now knew to the penny what precedence cost, and applied the knowledge, quietly, to every rank the Crown afterward asked it to honor.'); }}
+    ]},
+  'the-grammar-school':{ re:286,
+    t:'The Schoolmaster’s Petition', from:'A grey scholar with ink to the elbow and a petition, who taught half the clerks the Crown already employs',
+    p(){ return 'A scholar of the realm petitions the Crown to endow a grammar school in a growing town — a room, a master’s wage, and Latin for the sons of reeves and wool-merchants who can at present buy everything but the learning that would let them count it themselves. He argues that a realm runs on clerks and breeds too few; he does not mention, because he does not need to, that a realm which teaches its commons to read has taught them, also, to read the tax-rolls.';},
+    o:[
+      {l:'Endow the school under the Crown’s name', s:'Pay for the room, the master, and the Crown’s name over the door. Costs coin now; buys a town its letters, the Concord a rival at teaching, and a crop of clerks the realm will not see come up for years.',
+        f(){ S.gold=Math.max(0,S.gold-Math.round(70+prosperity())); const t=W.towns.filter(x=>x!==W.capital).sort((a,b)=>b.pros-a.pros)[0]; if(t){ t.pros=clamp(t.pros+3,4,95); }
+          S.piety=clamp(S.piety+1,0,100); fac('commons',4); S.legit=clamp(S.legit+2,0,100);
+          schedule(156,()=>{ marg('The grammar school the Crown endowed sent up its first grown scholars this year, and half went for clerks to the Crown’s own offices and served it well, and a few went for advocates and served exactly as well against it, having learned their letters, as the old scholar had promised, on the Crown’s coin and at the Crown’s occasional cost.'); });
+          chron('The Crown endowed the grammar school, a room and a master and the Crown’s name over the door, and the sons of reeves and wool-merchants bent over their Latin, and the realm had bought itself a harvest of clerks that would not come up for years, planted, as the scholar observed, exactly the way anything worth having is.'); }},
+      {l:'Let the Concord found and keep it', s:'Give the school to the church. Cheap, and the Concord teaches gladly; and the realm’s next clerks will have learned their letters, their loyalties, and their doubts from the Flame rather than the Chair.',
+        f(){ fac('church',5); S.piety=clamp(S.piety+2,0,100); fac('commons',2);
+          marg('The Crown gave the school to the Concord, which founded it gladly and taught it well, and the town got its letters and the church got the teaching of them, and the next generation of the realm’s clerks would come up knowing their Latin and their loyalties from the same bench, an economy the Crown had made and would be a long time pricing.'); }},
+      {l:'Refuse — the realm has clerks enough', s:'Decline the school. The coin is kept; a town is told its sons may stay unlettered, and the Crown spares itself the trouble of a commons that can read what it is charged.',
+        f(){ fac('commons',-3);
+          marg('The Crown declined the school, holding that the realm had clerks enough, and the scholar rolled his petition and went, and the sons of the reeves stayed at their fathers’ tallies, counting what they could not read, which some at court called a saving and the scholar, at the door, called interest.'); }}
+    ]},
+  'the-idle-mill':{ re:260,
+    t:'The Miller’s Empty Seat', from:'The elders of a village grinding its grain by hand, and the Crown’s escheator, who has the mill’s keys and no one to give them to',
+    p(){ return 'The miller of a village of the realm has died without son, daughter, or named heir, and the mill — the Crown’s own by ancient soke, the one wheel the whole village is bound by custom to grind at and pay for — stands idle with its stones dry. The village grinds by handquern in the meantime, which is to say slowly and resentfully, and the escheator has brought the Crown its keys and the question that comes with them: a mill is a rent, a bottleneck, and a village’s daily bread all at once, and the Crown must decide which of the three it means to be.';},
+    o:[
+      {l:'Grant the mill to a new miller for the old rent', s:'Re-let it and restore the soke. Gold in entry-fine and rent; the wheel turns again under a stranger, and the village grinds where it is bound to and pays what it always paid.',
+        f(){ S.gold+=Math.round(60+prosperity()); const t=W.towns.filter(x=>x!==W.capital).sort((a,b)=>a.pros-b.pros)[0]; if(t){ t.pros=clamp(t.pros+3,4,95); }
+          fac('commons',1);
+          chron('The Crown granted the mill to a new miller for the old rent and an entry-fine, and the wheel turned again within the month, and the village went back to grinding where it was bound to and paying what it always had, under a stranger’s soke instead of a neighbour’s, which it minded, and got over, in the usual order.'); }},
+      {l:'Give the mill to the village as a common mill', s:'Dissolve the soke and hand the wheel to the village. The commons gain a mill of their own and lose a master; the Crown gains their gratitude and gives up the rent, for good and for all the millers after.',
+        f(){ const t=W.towns.filter(x=>x!==W.capital).sort((a,b)=>a.pros-b.pros)[0]; if(t){ t.pros=clamp(t.pros+5,4,95); }
+          fac('commons',6); S.legit=clamp(S.legit+2,0,100);
+          chron('The Crown dissolved the old soke and gave the mill to the village whole, wheel and stones and the right to its own grinding, and the village elected a miller from among itself and ground its grain a fraction cheaper and a great deal prouder, and the rent the Crown gave up went on buying gratitude for a generation, which the exchequer could not enter in its rolls and the realm could.'); }},
+      {l:'Strip the mill and sell the stones', s:'Take the iron and the millstones for coin and let the wheel rot. A little gold now; a village put back a hundred years to the handquern, and a Crown that chose the scrap over the bread.',
+        f(){ S.gold+=Math.round(40+prosperity()); const t=W.towns.filter(x=>x!==W.capital).sort((a,b)=>a.pros-b.pros)[0]; if(t){ t.pros=Math.max(4,t.pros-3); }
+          fac('commons',-4);
+          marg('The Crown stripped the dead miller’s mill for its iron and its stones and let the wheel rot on its axle, and the coin was real and the village went back to the handquern its grandmothers had been glad to put down, and ground its resentment fine, having watched the Crown weigh a village’s bread against scrap and buy the scrap.'); }}
+    ]},
+  'the-renamed-village':{ re:286,
+    t:'The Village That Would Be Renamed', from:'The whole of a village, arrived as one, tired to the bone of the name the Crown’s rolls have called it for two hundred years',
+    p(){ return 'A village of the realm has come to the Crown to ask for a new name. The old one — set in the rolls after a battle lost there, or a lord hanged there, or a sickness that emptied it, the village no longer agrees which — has become a thing its people are weary of being from, and they wish to be entered henceforth under a name of their own choosing. It is a small request and a strange one, for to grant it the Crown must strike a word from its own record, and the Crown’s record is the one place the realm’s memory is supposed not to be edited.';},
+    o:[
+      {l:'Grant the new name and strike the old from the rolls', s:'Let them be who they wish. The village is grateful; the Crown’s record is quietly the poorer, one true old word traded for one kinder new one.',
+        f(){ fac('commons',5); S.legit=clamp(S.legit+1,0,100);
+          chron('The Crown granted the village its new name and struck the old one from the rolls, and the village went home lighter than it came, and the chronicler, who is obliged to record the striking, records also that he does not know, now, what it was the old name remembered, which was of course the point, and is the price.'); }},
+      {l:'Enter both — the new for the living, the old for the record', s:'A compromise in ink. The village goes by its new name and the rolls keep the old beneath it; the living get their wish and the record keeps its memory, and neither is wholly satisfied.',
+        f(){ fac('commons',2);
+          marg('The Crown let the village take its new name and kept the old one entered beneath it in the rolls, the new for the living and the old for the record, and the village was half-pleased and the chronicler wholly so, it being the only ruling of the season in which the annals themselves could be said to have won.'); }},
+      {l:'Refuse — a name in the Crown’s rolls is the Crown’s to keep', s:'Deny the change. The village stays what the record calls it; the Crown keeps its map legible and its memory whole, and a village learns it does not own the name it is entered under.',
+        f(){ fac('commons',-3); S.legit=clamp(S.legit+1,0,100);
+          marg('The Crown refused the village its new name, holding that the rolls were the realm’s memory and not the village’s mirror, and the village went home under the name it had come tired of, owning its houses and its meadow and its dead, and not, it now understood, the word the Crown called them by.'); }}
+    ]},
+
   /* ===== v0.56.0 THE CONSEQUENCES WAVE — letters that read back an earlier choice ===== */
   // Armed only by a specific non-default option (bastardDenied / delveSealed / repudiated); the auto-0
   // plans never pick those, so these never fire in the suite → zero rebaseline. Each is a callback the
@@ -7121,7 +7202,10 @@ const NOBLE_EXCLUDE=new Set([
   'wyrm-troth',
   // v0.57.0 the middle-book wave: chartering fairs, judging villages, mending the Crown's roads — all
   // sovereign acts of governance, none a climbing knight's to make. (Once ascended, they open.)
-  'the-long-servant','the-charter-fair','the-two-villages','the-good-year','the-kings-road'
+  'the-long-servant','the-charter-fair','the-two-villages','the-good-year','the-kings-road',
+  // v0.79.0 middle-book batch 2: licensing ferries, ruling on pews, endowing schools, granting
+  // escheated mills, editing the Crown's own rolls — sovereign governance, same rule as batch 1.
+  'the-ferry-right','the-front-pew','the-grammar-school','the-idle-mill','the-renamed-village'
 ]);
 // True only while a knight is still climbing — the single guard all gating rides behind.
 function nobleClimbing(){ return S.mode==='noble' && S.noble && !S.noble.ascended; }
@@ -7238,7 +7322,8 @@ function maybeFire(){
     // v0.57.0 the middle-book wave: the settled middle of a reign (years ~7–16). They join the shared
     // roll only in this window, so they add no draw — the existing pick simply has more to choose from.
     // (The one approved plan rebaseline of the batch: ambient picks in the middle years shift.)
-    if(S.week>=364 && S.week<=832) ids=ids.concat(['the-long-servant','the-charter-fair','the-two-villages','the-good-year','the-kings-road']);
+    if(S.week>=364 && S.week<=832) ids=ids.concat(['the-long-servant','the-charter-fair','the-two-villages','the-good-year','the-kings-road',
+      'the-ferry-right','the-front-pew','the-grammar-school','the-idle-mill','the-renamed-village']);   // v0.79.0 middle-book batch 2 — same window, same lane
     // the dark deck enters in year five and weighs heavier as the reign ages
     if(S.week>260) ids=ids.concat(['plague','murrain','townfire','the-incorrupt','the-extra-hearth','the-third-bell',
       'the-census','the-returning-road','the-honest-rolls','the-ninth-clerk']);   // R2 — administrative dread
@@ -12096,7 +12181,7 @@ function frame(now){
     // v0.53.0 the reign-film: apply due log actions + hold/answer letters, then advance ONE week per
     // step (never the multi-tick catch-up, so no action-week is skipped and the film matches the reign).
     filmDrive(now);
-    if(S.reading && !S.reading.paused && !S.pendingCard && !S.over){
+    if(S.reading && !S.reading.paused && !S.reading.ended && !S.pendingCard && !S.over){
       acc+=dt; const step=SPEEDMS[S.speed]||480;
       if(acc>step){ acc=0; tick(); }
     }
@@ -12521,8 +12606,8 @@ function saveGame(){ if(S.setup||S.replaying||S.reading)return;
   // (v pre-0.48)" whenever `data.v!==GAME_VER`. Without the stamp, resuming a reign saved thirty seconds
   // ago carried a scary and false warning on the most ordinary action in the game.
   try{ localStorage.setItem('annals-'+SEED, JSON.stringify({r:S.ruler,a:S.actions,w:S.week,v:GAME_VER})); }catch(e){} }
-const APP_VER='0.78.1';  // the visible release version; unlike GAME_VER, this advances on product releases
-const GAME_VER='0.65';    // replay-schema version; advances only when history compatibility changes
+const APP_VER='0.79.0';  // the visible release version; unlike GAME_VER, this advances on product releases
+const GAME_VER='0.67';    // replay-schema version; advances only when history compatibility changes
 (function exposeBuildVersion(){
   const el=$('buildver'); if(el) el.textContent='v'+APP_VER;
   let meta=document.querySelector('meta[name="application-version"]');
@@ -12603,6 +12688,19 @@ function sanitizeLegacy(ld){
   return { dynasties:n(ld.dynasties,9999)||1, wyrms:n(ld.wyrms,9999),
     scorched:(Array.isArray(ld.scorched)?ld.scorched:[]).filter(s=>typeof s==='string').slice(0,64).map(s=>s.slice(0,64)) };
 }
+// history 0.66 (#48): a build (or slider, spies, petition) logged WHILE a letter was pending happened before
+// that letter's answer in the live reign: the log holds [w,'b',k] ahead of [w,'c',id,i]. Every replay path
+// gates non-card actions on !S.pendingCard, so it used to answer the letter first and build after — a fork
+// whenever the answer changed what the build could see (most plainly: a letter that spends the gold the
+// build needed). `idx` is the queue index of the entry that answers the pending letter. Apply, in log
+// order, every non-card action queued ahead of it and already due, then return the answer's new index.
+// If no answer is recorded, drain the same due prefix so a final unanswered letter stays pending (#52).
+// Successions ('h') are never pulled forward: they belong to S.over, not to a pending letter.
+function applyBeforeAnswer(q, idx, apply){
+  const answered=idx>=0; if(!answered) idx=q.length; // no recorded answer: drain due actions, keep the letter
+  while(idx>0 && q[0][1]!=='c' && q[0][1]!=='k' && q[0][1]!=='h' && q[0][0]<=S.week){ apply(q.shift()); idx--; }
+  return answered?idx:-1;
+}
 function replay(data){
   data=sanitizeHistory(data);
   // a link from another version still replays (the log format is stable; new letters resolve via the
@@ -12628,9 +12726,7 @@ function replay(data){
   const q=all.filter(a=>!isSetupAction(a));   // finishSetup applied the week-0 setup; don't apply it twice
   const targetW=data.w||(all.length?all[all.length-1][0]:0);
   let guard=0;
-  while(guard++<300000){
-    while(q.length && q[0][1]!=='c' && q[0][1]!=='k' && q[0][0]<=S.week && !S.pendingCard && !S.over){
-      const a=q.shift();
+  const apply=a=>{
       if(a[1]==='b') doBuild(a[2]);
       else if(a[1]==='s'){ S[a[2]]=a[3]; }
       else if(a[1]==='y') paySpies();
@@ -12639,7 +12735,9 @@ function replay(data){
       else if(a[1]==='d'){ S.chair=a[2]; applyChairSetup(); }                     // v0.39.0: the chair (difficulty) — setup-time action, week 0, before any tick
       else if(a[1]==='L'){ applyLegacySetup(a[2]); }                              // v0.55.0: the Legacy Realm's remembered scars — setup-time, week 0
       else if(a[1]==='p') petition(a[2]);                                         // P8: a petition to the crown
-    }
+  };
+  while(guard++<300000){
+    while(q.length && q[0][1]!=='c' && q[0][1]!=='k' && q[0][0]<=S.week && !S.pendingCard && !S.over) apply(q.shift());
     if(S.over){
       // week-aware: an 'h' is logged at the death week, so only one already due can seat an heir. Searching
       // the whole queue let a far-future 'h' resurrect the reign past S.over over and over, indefinitely.
@@ -12650,7 +12748,8 @@ function replay(data){
     if(S.pendingCard){
       // a pending card is resolved by EITHER a 'c' (base option) or a 'k' (Wave 5 hook spend);
       // take whichever targets this card, earliest in the queue.
-      const idx=q.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===S.pendingCard.id);
+      let idx=q.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===S.pendingCard.id);
+      idx=applyBeforeAnswer(q, idx, apply);
       if(idx>=0){ const a=q.splice(idx,1)[0];
         if(a[1]==='k') resolveLeverage(a[2],a[3]); else resolveCard(a[3]); continue; }
       if(q.length){ resolveCard(0); continue; } // desync fallback: least-drama default
@@ -12702,17 +12801,10 @@ function startReading(data){
 // per-frame: apply any log actions now due, hold each letter a beat, then answer it — the paced twin of
 // replay()'s loop. Called from frame() only while S.reading is live.
 function filmDrive(now){
-  const R=S.reading; if(!R || R.paused) return;
+  const R=S.reading; if(!R || R.paused || R.ended) return;
   const q=R.log;
   // apply due non-card actions (builds, sliders, spies, petitions, successions) at their weeks
-  while(q.length && q[0][1]!=='c' && q[0][1]!=='k' && q[0][0]<=S.week && !S.pendingCard && !S.over){
-    const a=q.shift();
-    if(a[1]==='b') doBuild(a[2]);
-    else if(a[1]==='s'){ S[a[2]]=a[3]; renderSliders(); }
-    else if(a[1]==='y') paySpies();
-    else if(a[1]==='h') continueAsHeir(a[3]);
-    else if(a[1]==='p') petition(a[2]);
-  }
+  while(q.length && q[0][1]!=='c' && q[0][1]!=='k' && q[0][0]<=S.week && !S.pendingCard && !S.over) filmApply(q.shift());
   if(S.over){
     // a reign that continued as heir logged an 'h' at the death week — advance past it (into the
     // interregnum, whose letters then answer from the log), exactly as replay()/readingSkip() do.
@@ -12726,18 +12818,30 @@ function filmDrive(now){
     if(R.cardId!==S.pendingCard.id){ R.cardId=S.pendingCard.id; R.cardAt=now;
       $('filmnow').textContent='“'+(S.pendingCard.c.t||'')+'”'; }
     const beat=R.first?READ_BEAT_FIRST:READ_BEAT;
-    if(now-R.cardAt>=beat){ R.first=false; readingAnswer(); }
+    if(now-R.cardAt>=beat){ R.first=false; readingAnswer();
+      // An older telling may end before its advertised week at an unrecorded letter.
+      // Finish at that pending state, as replay/skip do; never invent an answer to reach targetW.
+      if(!q.length && (S.pendingCard || S.week>=R.targetW)) readingFinish(); }
     return;
   }
   if(!q.length && S.week>=R.targetW){ readingFinish(); return; }
   $('filmnow').textContent=dateLabel();
 }
+// the film's non-card applier, shared by the per-frame drain and readingAnswer (#48)
+function filmApply(a){
+  if(a[1]==='b') doBuild(a[2]);
+  else if(a[1]==='s'){ S[a[2]]=a[3]; renderSliders(); }
+  else if(a[1]==='y') paySpies();
+  else if(a[1]==='h') continueAsHeir(a[3]);
+  else if(a[1]==='p') petition(a[2]);
+}
 function readingAnswer(){
   const R=S.reading, id=S.pendingCard&&S.pendingCard.id; if(!id) return;
-  const q=R.log, idx=q.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===id);
+  const q=R.log; let idx=q.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===id);
+  idx=applyBeforeAnswer(q, idx, filmApply);
   if(idx>=0){ const a=q.splice(idx,1)[0];
     if(a[1]==='k') resolveLeverage(a[2],a[3]); else resolveCard(a[3]); }
-  else { resolveCard(0); }   // desync fallback (a link from an older telling): the least-drama default
+  else if(q.length){ resolveCard(0); }   // desync fallback (a link from an older telling): the least-drama default
   R.cardId=null; R.cardAt=0;
 }
 function readingFinish(){
@@ -12751,15 +12855,16 @@ function readingSkip(){
   const rest=R.log.slice();
   S.reading=null;                      // leave film mode so the fast-forward logs/saves normally from here
   S.replaying=true;
+  const skipApply=a=>{
+    if(a[1]==='b') doBuild(a[2]); else if(a[1]==='s'){ S[a[2]]=a[3]; }
+    else if(a[1]==='y') paySpies(); else if(a[1]==='h') continueAsHeir(a[3]); else if(a[1]==='p') petition(a[2]);
+  };
   let guard=0;
   while(guard++<300000){
-    while(rest.length && rest[0][1]!=='c' && rest[0][1]!=='k' && rest[0][0]<=S.week && !S.pendingCard && !S.over){
-      const a=rest.shift();
-      if(a[1]==='b') doBuild(a[2]); else if(a[1]==='s'){ S[a[2]]=a[3]; }
-      else if(a[1]==='y') paySpies(); else if(a[1]==='h') continueAsHeir(a[3]); else if(a[1]==='p') petition(a[2]);
-    }
+    while(rest.length && rest[0][1]!=='c' && rest[0][1]!=='k' && rest[0][0]<=S.week && !S.pendingCard && !S.over) skipApply(rest.shift());
     if(S.over){ const hi=rest.findIndex(x=>x[1]==='h' && x[0]<=S.week); if(hi>=0){ continueAsHeir(rest.splice(hi,1)[0][3]); continue; } break; }
-    if(S.pendingCard){ const i=rest.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===S.pendingCard.id);
+    if(S.pendingCard){ let i=rest.findIndex(x=>(x[1]==='c'||x[1]==='k')&&x[2]===S.pendingCard.id);
+      i=applyBeforeAnswer(rest, i, skipApply);
       if(i>=0){ const a=rest.splice(i,1)[0]; if(a[1]==='k') resolveLeverage(a[2],a[3]); else resolveCard(a[3]); continue; }
       if(rest.length){ resolveCard(0); continue; } break; }
     if(!rest.length && S.week>=(R.targetW||0)) break;
@@ -12990,15 +13095,15 @@ const SCENARIOS=[
   { id:'debtor', name:'The Debtor\u2019s Crown', ruler:['Queen','Maud'], seed:3030830, week:420,
     hook:'Eight years of taxing like a wolf and building like a sluggard. The League has stopped petitioning and started counting barges; the market square knows the Crown\u2019s name mostly as a number.',
     goal:'Endure to the fiftieth year with the crown still on. The commons will rise long before that unless something warms them.',
-    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",40],[3,"s","toll",30],[3,"s","tithe",16],[4,"b","mill"],[6,"c","appoint-marshal",0],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"c","writ",0],[35,"c","famine",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[166,"c","famine",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[275,"c","the-ninth-clerk",0],[283,"c","duel",0],[292,"c","the-extra-hearth",0],[320,"c","famine",0],[346,"c","guild-war",0],[364,"c","debt-called",0],[365,"c","royal-saint",0],[366,"c","doctrine-endowment",0],[382,"c","townfire",0],[391,"c","the-ward",0],[392,"c","sworn-restoration-1",0],[395,"c","book",0],[409,"c","the-charter-fair",2],[418,"c","the-census",0]]') },
+    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",40],[3,"s","toll",30],[3,"s","tithe",16],[4,"b","mill"],[6,"c","appoint-marshal",0],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"c","writ",0],[35,"c","famine",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[166,"c","famine",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[275,"c","the-ninth-clerk",0],[283,"c","duel",0],[292,"c","the-extra-hearth",0],[320,"c","famine",0],[346,"c","guild-war",0],[364,"c","debt-called",0],[365,"c","winter-wedding",0],[366,"c","doctrine-endowment",0],[382,"c","murrain",0],[391,"c","hostage-exchange",0],[395,"c","book",0],[409,"c","the-kings-road",0],[418,"c","the-census",0]]') },
   { id:'wyrmbait', name:'The Wyrm in the Counting-House', ruler:['Queen','Aldith'], seed:3030830, week:560,
     hook:'Eleven years of thrift and toll have raised the fattest treasury the realm has ever weighed \u2014 and treasuries above a certain weight stop being coin and start being bait. Something has begun killing cattle in the high pastures, and leaving them.',
     goal:'Keep the hoard AND the realm. The annals doubt you can keep both.',
-    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],[6,"c","appoint-marshal",0],[8,"b","market"],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"b","granary"],[30,"c","writ",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[319,"c","plague",0],[346,"c","heresy",0],[348,"c","rebuild",0],[355,"c","toll-farm",0],[364,"c","the-ninth-clerk",0],[400,"c","royal-saint",0],[403,"c","debt-called",0],[418,"c","empty-reliquary",0],[427,"c","la-great-debasement",0],[436,"c","hostage-exchange",0],[445,"c","prophet",0],[452,"c","rebuild",0],[472,"c","la-overfull-court",0],[482,"c","wakening",0],[490,"c","the-charcoal",0],[491,"c","duel",0],[499,"c","the-long-servant",0],[507,"c","ultimatum",0],[517,"c","the-kings-road",0],[535,"c","tourney",0],[556,"c","rebuild",0]]') },
+    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],[6,"c","appoint-marshal",0],[8,"b","market"],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"b","granary"],[30,"c","writ",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[319,"c","plague",0],[346,"c","heresy",0],[348,"c","rebuild",0],[355,"c","toll-farm",0],[364,"c","the-ninth-clerk",0],[400,"c","the-charter-fair",0],[403,"c","debt-called",0],[418,"c","hostage-exchange",0],[445,"c","la-fat-tribute",0],[452,"c","rebuild",0],[454,"c","the-ferry-right",0],[463,"c","duel",0],[472,"c","la-tithe-barns",0],[482,"c","wakening",0],[490,"c","the-charcoal",0],[491,"c","the-ward",0],[492,"c","sworn-restoration-1",0],[499,"c","old-marshal",0],[512,"c","sworn-restoration-2",0],[522,"c","sworn-restoration-3",0],[523,"c","doctrine-justice",0],[535,"c","comet",0],[551,"c","sweat",0],[556,"c","rebuild",0]]') },
   { id:'delvedeep', name:'The Delve Runs Deep', ruler:['Queen','Delver'], seed:3030830, week:450,
     hook:'The Crown opened the deep vein against the old miners\u2019 warning, then cut deeper still when the first raids came. The silver arrives by the wain-load; so, every few seasons, do the deep folk.',
     goal:'Hold the Delve \u2014 or decide, at last, what the grandfathers walled in and why.',
-    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],[6,"c","appoint-marshal",0],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"c","writ",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[141,"c","famine",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[291,"c","famine",0],[319,"c","duel",0],[346,"c","heresy",0],[348,"c","rebuild",0],[355,"c","toll-farm",0],[364,"c","the-ninth-clerk",0],[400,"c","the-long-servant",0],[403,"c","debt-called",0],[409,"c","hostage-exchange",0],[427,"c","la-great-debasement",0],[436,"c","empty-reliquary",0],[443,"c","famine",0],[445,"c","the-kings-road",0]]') },
+    a:JSON.parse('[[2,"c","cold-chair",0],[3,"s","tax",22],[3,"s","toll",14],[4,"b","mill"],[6,"c","appoint-marshal",0],[10,"c","appoint-treasurer",0],[14,"c","appoint-spymaster",0],[16,"c","crown-vow",0],[30,"c","writ",0],[40,"c","silver",0],[42,"c","bride",0],[49,"c","tourney",0],[58,"c","the-charcoal",0],[85,"c","refugees",0],[88,"c","treasurer-third-1",0],[93,"c","treasurer-third-2",0],[96,"c","treasurer-third-3",0],[100,"c","appoint-treasurer",0],[103,"c","prophet",0],[112,"c","empty-reliquary",0],[117,"c","ultimatum",0],[130,"c","false-coin",0],[132,"c","the-delve",0],[141,"c","famine",0],[182,"c","wakening",0],[184,"c","the-bastard",0],[195,"c","book",0],[208,"c","debt-called",0],[211,"c","flood",0],[245,"c","the-delve-again",0],[247,"c","bridge-fall",0],[256,"c","silent-staithes",0],[273,"c","ultimatum",0],[274,"c","the-charcoal",0],[291,"c","famine",0],[319,"c","duel",0],[346,"c","heresy",0],[348,"c","rebuild",0],[355,"c","toll-farm",0],[364,"c","the-ninth-clerk",0],[400,"c","the-two-villages",0],[403,"c","debt-called",0],[409,"c","mad-heir",0],[427,"c","la-great-debasement",0],[436,"c","the-tasting",0],[443,"c","famine",0],[445,"c","the-front-pew",0]]') },
   { id:'ironstart', name:'The Iron Chair, Cold', ruler:['Queen','Sigrun'], seed:3030830, week:0,
     hook:'No inheritance but doubt: a crown believed by twenty-one souls in the hundred, dangers already gathering, estates quick to anger, and a throne that falls before the mandate is wholly spent.',
     goal:'The hardest weight the annals reckon, from the first week. Endure it.',
