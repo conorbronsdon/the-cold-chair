@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased — replay order (history 0.66, draft for #48)
+
+- A build, slider change, spy payment or petition logged while a letter was pending now replays before that letter's answer, as it happened live. Previously every replay path (restoring a save or history link, the watched film, and the film's "To the Leaf") answered the letter first, so a letter that spent the gold a build needed forked the replayed reign from the live one.
+- The replay-schema version (`GAME_VER`) moves from 0.65 to 0.66: a save or link written under 0.65 that built during a pending letter may replay differently now, and opening one shows the existing "older telling" notice.
+- A final unanswered letter stays pending after replaying its queued builds, including save/restore and both film paths (#52, a pre-existing bug). Films stop at the recorded final week, including when the last action is an answer. An older history whose log ends at an unanswered letter before its advertised week finishes at the recoverable pending state, matching restore and skip.
+- Added `tests/replay-order-check.js`: a gold-spending letter plus a just-affordable build begun while it is pending, asserting live and replayed chronicles and state match on all three replay paths, with a calm-reign complement.
+
+## v0.79.0 — The Middle-Book, batch 2
+
+The last content landing before the pause. Five letters built for v0.66.0 and shelved in #54, ported onto the current game unchanged in text and effect.
+
+- Added five ambient letters for the settled middle of a reign (years ~7–16), on the same lane as the v0.57.0 Middle-Book batch:
+  - **The Ferryman's Right**: the only licensed crossing for a day's ride has learned what a monopoly is worth. License a rival boat, buy the ferry into the Crown's hand and post a fair toll, or confirm the right and take the Crown's cut.
+  - **The Matter of the Pew**: two great houses fight over the foremost pew of the parish church. Rule by the parish rolls, hand the ruling to the Concord, or sell the pew to the higher bidder.
+  - **The Schoolmaster's Petition**: a scholar asks the Crown to endow a grammar school. Endow it, give it to the Concord, or refuse. Endowing it schedules the batch's one follow-up, a margin note three years on about the school's first scholars; it changes no state.
+  - **The Miller's Empty Seat**: a miller dies without heir and the mill escheats to the Crown. Re-let it for the old rent, give the village its own mill, or strip the stones for scrap.
+  - **The Village That Would Be Renamed**: a village asks to be entered in the rolls under a new name. Strike the old name, enter both, or refuse.
+- The letters join the shared ambient roll in the mid-reign window (weeks 364–832) and take no new random draw; the existing pick has more to choose from. No effect, prompt or scheduled note draws from any of the four seeded streams. All five are in `NOBLE_EXCLUDE`, so a climbing knight never sees them; once ascended, they open.
+- This is an approved rebaseline. Because the shared pick has more cards, a reign can draw a different letter from week 364 on and diverge from there. The replay-schema version (`GAME_VER`) moves from 0.66 to 0.67, so opening a save or link written under 0.66 shows the existing "older telling" notice.
+- Across the 28 harness plans (seed 3030830, `--auto=0`, to week 1040), 27 now play differently. `noble-attainder` is byte-identical, because its knight never ascends and never enters the pool. The new letters fire in 11, 9, 7, 5 and 12 plans respectively. Every plan keeps its outcome except `dragon-hoard` and `piety-neglect`, which no test pins and which now endure to year 50 instead of being usurped (years 49 and 48). `pretender-war` is still usurped, in year 43 instead of 45. There are no anomalies beyond `hooks-badspend`'s intentional one, and double runs are byte-identical.
+- The Debtor's Crown, the Wyrm in the Counting-House and the Delve Runs Deep replay through the mid-reign window, so their action logs were regenerated against the new stream: same seed and same slider/build spine, with letters re-recorded from what actually fires. `scenario-check` passes unchanged.
+- Added `tests/middlebook-check.js` (255 assertions): card shapes, the window wiring, `NOBLE_EXCLUDE`, every option's clamps, the follow-up's purity, repeatable resolution, and a static scan that fails if any card function names a stream draw (`rWorld`/`rDetail`/`rHist`/`rAmb`, `ri`, `pick`) or the clock.
+
 ## v0.78.1 — The Diorama, full screen
 
 - Full screen now plays the reign from inside the Diorama. Letters open over the model, the pace controls sit at the bottom of the screen, and Build, the Codex, toasts and the Last Leaf all stay on top. It used to fullscreen the map stage alone, which hid every letter and the pace while it was up. Leaving the Diorama for another view leaves full screen; where the browser has no full-screen API, the same view fills the window and Escape leaves it.
